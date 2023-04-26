@@ -8,7 +8,9 @@ class TaskController {
   } 
 
   async getTasks(req, res, next) {
-
+    const id = req.params.id;
+    const tasks = await Task.findAll({where: {userId: id}});
+    return res.json({ tasks });
   }
 
   async getTask(req, res, next) {
