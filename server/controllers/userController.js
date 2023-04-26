@@ -44,7 +44,17 @@ class UserController {
   }
 
   async check(req, res, next) {
-
+    const accessToken = jwt.sign(
+      {
+        "id": req.user.id,
+        "email": req.user.email
+      },
+      process.env.SECRET_KEY,
+      {
+        expiresIn: "2h"
+      }
+    )
+    res.status(200).json({accessToken});
   }
 }
 
