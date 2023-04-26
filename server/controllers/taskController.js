@@ -14,7 +14,9 @@ class TaskController {
   }
 
   async getTask(req, res, next) {
-
+    const id = req.params.id;
+    const task = await Task.findOne({where: {id}});
+    return res.json(task);
   }
 
   async deleteTask(req, res, next) {
