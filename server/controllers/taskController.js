@@ -20,7 +20,9 @@ class TaskController {
   }
 
   async deleteTask(req, res, next) {
-
+    const id = req.params.id;
+    await Task.destroy({where:{id}});
+    return res.sendStatus(204);
   }
 
   async editTask(req, res, next) {
