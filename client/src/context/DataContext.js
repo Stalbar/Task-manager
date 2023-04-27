@@ -4,6 +4,8 @@ const DataContext = createContext({});
 
 export const DataProvider = ({children}) => {
   
+  const [search, setSearch] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
   const [isAuth, setIsAuth] = useState(false);
   const [tasks, setTasks] = useState([
     {
@@ -11,7 +13,7 @@ export const DataProvider = ({children}) => {
       "title": "Task 1 title",
       "content": "Task 1 content",
       "expiredAt": "2023-04-30",
-      "status": "IN PROGRESS"
+      "status": "SUCCESS"
     },
     {
       "id": "2",
@@ -25,14 +27,14 @@ export const DataProvider = ({children}) => {
       "title": "Task 3 title",
       "content": "Task 3 content",
       "expiredAt": "2023-04-30",
-      "status": "IN PROGRESS"
+      "status": "CANCELED"
     },
     {
       "id": "4",
       "title": "Task 4 title",
       "content": "Task 4 content",
       "expiredAt": "2023-04-30",
-      "status": "IN PROGRESS"
+      "status": "FAILED"
     },
     {
       "id": "5",
@@ -60,7 +62,9 @@ export const DataProvider = ({children}) => {
   return (
     <DataContext.Provider value={{
       isAuth, setIsAuth,
-      tasks, setTasks
+      tasks, setTasks,
+      search, setSearch,
+      searchResults, setSearchResults
     }}>
       {children}
     </DataContext.Provider>
