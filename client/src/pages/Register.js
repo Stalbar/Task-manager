@@ -1,18 +1,18 @@
 import React from 'react'
 import { Button, Card, Container, Form } from 'react-bootstrap'
 
-const Auth = () => {
+const Register = () => {
   return (
     <Container
       className='d-flex justify-content-center align-items-center'
-      style={{ height: window.innerHeight - 54 }}
+      style={{height: window.innerHeight - 54 }}
     >
-      <Card style={{ width: 600 }} className="p-5">
-        <h2 className="m-auto">Authorization</h2>
+      <Card style={{ width: 600 }} className='p-5'>
+        <h2 className='m-auto'>Registration</h2>
         <Form className='d-flex flex-column'>
           <Form.Control
-            className="mt-3"
-            placeholder="Email"
+            className='mt-3'
+            placeholder='Email'
             type='text'
           />
           <Form.Control
@@ -25,7 +25,7 @@ const Auth = () => {
             className='mt-3'
             type='submit'
           >
-            Login
+            Register
           </Button>
         </Form>
       </Card>
@@ -33,4 +33,4 @@ const Auth = () => {
   )
 }
 
-export default Auth
+export default Register
