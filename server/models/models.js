@@ -6,7 +6,7 @@ const Task = sequelize.define('task', {
   title: { type: DataTypes.STRING, allowNull: false },
   content: { type: DataTypes.STRING, allowNull: false },
   expiredAt: { type: DataTypes.DATEONLY, allowNull: false },
-  status: { type: DataTypes.ENUM('IN PROGRESS', 'FAILED', 'CANCELED'), allowNull: false}
+  status: { type: DataTypes.ENUM('IN PROGRESS', 'FAILED', 'CANCELED', 'COMPLETE'), allowNull: false}
 });
 
 const User = sequelize.define('user', {

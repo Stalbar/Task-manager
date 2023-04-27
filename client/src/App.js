@@ -1,5 +1,6 @@
 import NavBar from "./components/NavBar";
 import { Switch, Route } from 'react-router-dom';
+import TaskManager from "./pages/TaskManager";
 
 function App() {
   
@@ -7,7 +8,7 @@ function App() {
     <div>
       <NavBar />
       <Switch>
-
+        <Route exact path="/" component={TaskManager}/>
       </Switch>
     </div>
 
