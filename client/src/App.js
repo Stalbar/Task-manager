@@ -4,6 +4,7 @@ import TaskManager from "./pages/TaskManager";
 import Auth from "./pages/Auth";
 import Register from "./pages/Register";
 import TaskPage from "./pages/TaskPage";
+import NewTask from "./pages/NewTask";
 
 function App() {
   
@@ -11,6 +12,7 @@ function App() {
     <div>
       <NavBar />
       <Switch>
+        <Route exact path="/task" component={NewTask}/>
         <Route exact path="/" component={TaskManager}/>
         <Route path='/task/:id' component={TaskPage}/>
         <Route path='/auth' component={Auth}/>
