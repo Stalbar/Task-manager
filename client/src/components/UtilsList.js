@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button, Form } from 'react-bootstrap'
+import { Link } from 'react-router-dom';
 
 const UtilsList = () => {
   return (
@@ -7,7 +8,7 @@ const UtilsList = () => {
       
       <Form.Label>Search task</Form.Label>
       <Form.Control input='text'></Form.Control>
-      <Button variant={"outline-success"} className='mt-2'>Add Task</Button>
+      <Link to='/task'><Button variant={"outline-success"} className='mt-2'>Add Task</Button></Link>
     </Form>
   )
 }

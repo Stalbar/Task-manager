@@ -7,9 +7,9 @@ const NavBar = () => {
       <Container>
         <Navbar.Brand href="/">Task Manager</Navbar.Brand>
         <Nav className="ms-auto">
-          <Nav.Link>Login</Nav.Link>
-          <Nav.Link>Registration</Nav.Link>
-          <Nav.Link>Manage Tasks</Nav.Link>
+          <Nav.Link href='/auth'>Login</Nav.Link>
+          <Nav.Link href='/registration'>Registration</Nav.Link>
+          <Nav.Link href='/'>Manage Tasks</Nav.Link>
         </Nav>
       </Container>
     </Navbar>
