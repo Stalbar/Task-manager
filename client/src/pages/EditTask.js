@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Container, Card, Form, Button } from 'react-bootstrap';
 import { useHistory, useParams } from 'react-router-dom';
 import DataContext from '../context/DataContext';
+import { editTask } from '../http/taskAPI';
 
 const EditTask = () => {
 
@@ -32,7 +33,7 @@ const EditTask = () => {
       expiredAt: editExpiredAt,
       status: new Date().toISOString().slice(0, 10) > editExpiredAt ? "FAILED" : "IN PROGRESS",
     }
-    console.log(newTask.status, newTask.expiredAt);
+    await editTask(newTask.id, newTask.title, newTask.content, newTask.expiredAt, newTask.status);
     setTasks(tasks.map(task => task.id === id ? { ...newTask} : task));
     setEditContent('');
     setEditTitle('');
@@ -46,7 +47,7 @@ const EditTask = () => {
       style={{ height: window.innerHeight - 54 }}
     >
       <Card style={{width: 600}} className="p-5">
-        <Form className='d-flex flex-column'>
+        <Form className='d-flex flex-column' onSubmit={(e) => e.preventDefault()}>
           <Form.Control
             type='text'
             className='mt-3'

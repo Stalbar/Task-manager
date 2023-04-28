@@ -21,22 +21,23 @@ class TaskController {
   }
 
   async deleteTask(req, res, next) {
-    const id = req.user.id;
+    const id = req.params.id;
     await Task.destroy({where:{id}});
     return res.sendStatus(204);
   }
 
   async editTask(req, res, next) {
-    const { title, content, expiredAt } = req.body;
-    const id = req.user.id;
+    const { title, content, expiredAt, status } = req.body;
+    const id = req.params.id;
     const candidate = await Task.findOne({where: {id}});
     if (!candidate) {
+      console.log()
       return res.sendStatus(404);
     }
     candidate.title = title;
     candidate.content = content;
     candidate.expiredAt = expiredAt;
-    candidate.status = new Date().toISOString().slice(0, 10) > expiredAt ? "FAILED" : "IN PROGRESS";
+    candidate.status = status;
     await candidate.save();
     res.status(200).json(candidate);
   }

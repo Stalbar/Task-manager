@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import { Button, Card, Container, Form } from 'react-bootstrap'
 import DataContext from '../context/DataContext'
 import { useHistory } from 'react-router-dom';
+import { addTask } from '../http/taskAPI';
 
 const NewTask = () => {
 
@@ -25,6 +26,7 @@ const NewTask = () => {
       expiredAt: newExpiredAt,
       status: new Date().toISOString().slice(0, 10) > newExpiredAt ? "FAILED" : "IN PROGRESS"
     }
+    await addTask(newTask.title, newTask.content, newTask.expiredAt, newTask.status);
     const allTasks = [...tasks, newTask];
     setTasks(allTasks);
     setNewTitle('');

@@ -1,12 +1,19 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import UtilsList from '../components/UtilsList'
 import TaskList from '../components/TaskList'
 import DataContext from '../context/DataContext'
+import { getTasks } from '../http/taskAPI'
 
 const TaskManager = () => {
   
-  const {searchResults} = useContext(DataContext);
+  const { searchResults, setTasks } = useContext(DataContext);
+
+  useEffect(() => {
+    getTasks().then(data => {
+      setTasks(data);
+    }) 
+  }, [])
 
   return (
     <Container>

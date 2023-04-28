@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { Button, Card, Col, Container, Row } from 'react-bootstrap'
 import DataContext from '../context/DataContext'
 import { useParams, Link, useHistory } from 'react-router-dom';
+import { deleteTask, editTask } from '../http/taskAPI';
 
 const TaskPage = () => {
 
@@ -11,6 +12,7 @@ const TaskPage = () => {
   const history = useHistory();
 
   const handleDelete = async (id) => {
+    await deleteTask(id);
     const taskList = tasks.filter(task => task.id !== id);
     setTasks(taskList);
     history.push('/')
@@ -19,6 +21,7 @@ const TaskPage = () => {
   const handleCancel = async (id) => {
     if (task.status === 'IN PROGRESS') {
       task.status = 'CANCELED';
+      await editTask(task.id, task.title, task.content, task.expiredAt, task.status);
       history.push('/');
     }
     else {
@@ -28,7 +31,8 @@ const TaskPage = () => {
 
   const handleFinish = async (id) => {
     if (task.status === 'IN PROGRESS') {
-      task.status = 'SUCCESS';
+      task.status = 'COMPLETE';
+      await editTask(id, task.title, task.content, task.expiredAt, task.status);
       history.push('/');
     }
     else {
