@@ -50,7 +50,7 @@ const TaskPage = () => {
       <Row className='mt-1 mb-2 text-center'>
         <Col>
           <Button variant="outline-danger" className='me-3' onClick={() => handleDelete(id)}>Delete Task</Button>
-          <Link to={`/edit/${id}`}><Button variant='outline-primary' className='me-3'>Edit Task</Button></Link>
+          {task.status === "IN PROGRESS" && <Link to={`/edit/${id}`}><Button variant='outline-primary' className='me-3'>Edit Task</Button></Link>}
           <Button variant='outline-danger' className='me-3' onClick={() => handleCancel(id)}>Cancel Task</Button>
           <Button variant='outline-success' className='me-3' onClick={() => handleFinish(id)}>Finish Task</Button>
         </Col>
