@@ -2,32 +2,33 @@ const { Task } = require('../models/models');
 
 class TaskController {
   async addTask(req, res, next) {
-    const { title, content, expiredAt, status, userId } = req.body;
-    const task = await Task.create({ title, content, expiredAt, status, userId});
+    const { title, content, expiredAt, status } = req.body;
+    const task = await Task.create({ title, content, expiredAt, status, userId: req.user.id});
+    console.log(req.user);
     return res.json({task});
   } 
 
   async getTasks(req, res, next) {
-    const id = req.params.id;
+    const id = req.user.id;
     const tasks = await Task.findAll({where: {userId: id}});
     return res.json({ tasks });
   }
 
   async getTask(req, res, next) {
-    const id = req.params.id;
+    const id = req.user.id;
     const task = await Task.findOne({where: {id}});
     return res.json(task);
   }
 
   async deleteTask(req, res, next) {
-    const id = req.params.id;
+    const id = req.user.id;
     await Task.destroy({where:{id}});
     return res.sendStatus(204);
   }
 
   async editTask(req, res, next) {
     const { title, content, expiredAt } = req.body;
-    const id = req.params.id;
+    const id = req.user.id;
     const candidate = await Task.findOne({where: {id}});
     if (!candidate) {
       return res.sendStatus(404);
