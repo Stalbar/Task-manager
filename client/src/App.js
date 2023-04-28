@@ -5,6 +5,7 @@ import Auth from "./pages/Auth";
 import Register from "./pages/Register";
 import TaskPage from "./pages/TaskPage";
 import NewTask from "./pages/NewTask";
+import EditTask from "./pages/EditTask";
 
 function App() {
   
@@ -15,6 +16,7 @@ function App() {
         <Route exact path="/task" component={NewTask}/>
         <Route exact path="/" component={TaskManager}/>
         <Route path='/task/:id' component={TaskPage}/>
+        <Route path='/edit/:id' component={EditTask}/>
         <Route path='/auth' component={Auth}/>
         <Route path='/registration' component={Register}/>
       </Switch>

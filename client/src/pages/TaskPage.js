@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { Button, Card, Col, Container, Row } from 'react-bootstrap'
 import DataContext from '../context/DataContext'
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 const TaskPage = () => {
 
@@ -23,7 +23,7 @@ const TaskPage = () => {
       <Row className='mt-1 mb-2 text-center'>
         <Col>
           <Button variant="outline-danger" className='me-3'>Delete Task</Button>
-          <Button variant='outline-primary'>Edit Task</Button>
+          <Link to={`/edit/${id}`}><Button variant='outline-primary'>Edit Task</Button></Link>
         </Col>
       </Row>
     </Container>
