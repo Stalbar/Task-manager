@@ -1,13 +1,40 @@
 import React, { useContext } from 'react'
 import { Button, Card, Col, Container, Row } from 'react-bootstrap'
 import DataContext from '../context/DataContext'
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useHistory } from 'react-router-dom';
 
 const TaskPage = () => {
 
   const { tasks, setTasks } = useContext(DataContext);
   const { id } = useParams();
   const task = tasks.find(task => (task.id).toString() === id);
+  const history = useHistory();
+
+  const handleDelete = async (id) => {
+    const taskList = tasks.filter(task => task.id !== id);
+    setTasks(taskList);
+    history.push('/')
+  }
+
+  const handleCancel = async (id) => {
+    if (task.status === 'IN PROGRESS') {
+      task.status = 'CANCELED';
+      history.push('/');
+    }
+    else {
+      alert("This task can't be canceled");
+    }
+  }
+
+  const handleFinish = async (id) => {
+    if (task.status === 'IN PROGRESS') {
+      task.status = 'SUCCESS';
+      history.push('/');
+    }
+    else {
+      alert("This task can't be finished");
+    }
+  }
 
 
   return (
@@ -22,8 +49,10 @@ const TaskPage = () => {
       </Card>
       <Row className='mt-1 mb-2 text-center'>
         <Col>
-          <Button variant="outline-danger" className='me-3'>Delete Task</Button>
-          <Link to={`/edit/${id}`}><Button variant='outline-primary'>Edit Task</Button></Link>
+          <Button variant="outline-danger" className='me-3' onClick={() => handleDelete(id)}>Delete Task</Button>
+          <Link to={`/edit/${id}`}><Button variant='outline-primary' className='me-3'>Edit Task</Button></Link>
+          <Button variant='outline-danger' className='me-3' onClick={() => handleCancel(id)}>Cancel Task</Button>
+          <Button variant='outline-success' className='me-3' onClick={() => handleFinish(id)}>Finish Task</Button>
         </Col>
       </Row>
     </Container>
