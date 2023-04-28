@@ -5,7 +5,7 @@ export const registration = async (email, password) => {
 }
 
 export const login = async (email, password) => {
-  const { data } = await $host.posh('api/user/auth', { email, password });
+  const { data } = await $host.post('api/user/auth', { email, password });
   localStorage.setItem('token', data.accessToken);
 }
 
