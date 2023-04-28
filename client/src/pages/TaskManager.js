@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import UtilsList from '../components/UtilsList'
 import TaskList from '../components/TaskList'
+import DataContext from '../context/DataContext'
 
 const TaskManager = () => {
+  
+  const {searchResults} = useContext(DataContext);
+
   return (
     <Container>
       <Row className='mt-2'>
@@ -11,7 +15,7 @@ const TaskManager = () => {
           <UtilsList />
         </Col>
         <Col md={9}>
-          <TaskList/>
+          <TaskList tasks={searchResults}/>
         </Col>
       </Row>
     </Container>

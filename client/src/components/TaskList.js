@@ -1,11 +1,8 @@
 import React, { useContext } from 'react'
 import { Row } from 'react-bootstrap'
-import DataContext from '../context/DataContext'
 import Task from './Task';
 
-const TaskList = () => {
-
-  const { tasks } = useContext(DataContext);
+const TaskList = ({tasks}) => {
 
   return (
     <Row className='d-flex mt-5'>

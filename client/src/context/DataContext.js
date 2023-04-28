@@ -1,4 +1,4 @@
-const { createContext, useState } = require("react");
+const { createContext, useState, useEffect } = require("react");
 
 const DataContext = createContext({});
 
@@ -58,6 +58,15 @@ export const DataProvider = ({children}) => {
       "status": "IN PROGRESS"
     },
   ])
+
+  useEffect(() => {
+    const filterResults = tasks.filter(task => 
+      ((task.title).toLowerCase()).includes(search.toLowerCase())
+      || ((task.content).toLowerCase()).includes(search.toLowerCase())
+      || ((task.expiredAt).toLowerCase()).includes(search.toLowerCase()));
+
+      setSearchResults(filterResults.reverse());
+  }, [tasks, search])
 
   return (
     <DataContext.Provider value={{
