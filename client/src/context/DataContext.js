@@ -1,3 +1,5 @@
+import { check } from "../http/userAPI";
+
 const { createContext, useState, useEffect } = require("react");
 
 const DataContext = createContext({});
@@ -67,6 +69,12 @@ export const DataProvider = ({children}) => {
 
       setSearchResults(filterResults.reverse());
   }, [tasks, search])
+
+  useEffect(() => {
+    check().then(data => {
+      setIsAuth(true);
+    })
+  }, [])
 
   return (
     <DataContext.Provider value={{
