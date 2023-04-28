@@ -22,7 +22,8 @@ const NewTask = () => {
       id: id,
       title: newTitle,
       content: newContent,
-      status: "IN PROGRESS"
+      expiredAt: newExpiredAt,
+      status: new Date().toISOString().slice(0, 10) > newExpiredAt ? "FAILED" : "IN PROGRESS"
     }
     const allTasks = [...tasks, newTask];
     setTasks(allTasks);
