@@ -13,7 +13,6 @@ const Auth = () => {
 
   const handleAuth = async () => {
     try {
-      console.log(1);
       await login(email, password);
       setIsAuth(true);
       setEmail('');
