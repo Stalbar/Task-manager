@@ -11,6 +11,7 @@ class TaskController {
   async getTasks(req, res, next) {
     const id = req.user.id;
     const tasks = await Task.findAll({where: {userId: id}});
+    await Task.update({ status: "FAILED"}, {where: { expiredAt: { $lt: new Date().toISOString().slice(0, 10)}}});
     return res.json({ tasks });
   }
 

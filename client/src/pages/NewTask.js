@@ -24,7 +24,7 @@ const NewTask = () => {
       title: newTitle,
       content: newContent,
       expiredAt: newExpiredAt,
-      status: new Date().toISOString().slice(0, 10) > newExpiredAt ? "FAILED" : "IN PROGRESS"
+      status: new Date().toISOString().slice(0, 10) >= newExpiredAt ? "FAILED" : "IN PROGRESS"
     }
     await addTask(newTask.title, newTask.content, newTask.expiredAt, newTask.status);
     const allTasks = [...tasks, newTask];

@@ -26,6 +26,10 @@ const EditTask = () => {
   }, [task]);
 
   const handleEdit = async (id) => {
+    if (!editTitle || !editContent || !editExpiredAt) {
+      alert('All fields must be filled!');
+      return;
+    }
     const newTask = {
       id: id,
       title: editTitle,

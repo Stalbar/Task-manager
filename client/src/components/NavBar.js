@@ -19,7 +19,7 @@ const NavBar = () => {
           {!isAuth && <Nav.Link href='/auth'>Login</Nav.Link>}
           {!isAuth && <Nav.Link href='/registration'>Registration</Nav.Link>}
           {isAuth && <Nav.Link href='/auth' onClick={() => handleLogout()}>Logout</Nav.Link>}
-          <Nav.Link href='/'>Manage Tasks</Nav.Link>
+          {isAuth && <Nav.Link href='/'>Manage Tasks</Nav.Link>}
         </Nav>
       </Container>
     </Navbar>
