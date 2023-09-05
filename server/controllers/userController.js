@@ -9,13 +9,7 @@ class UserController {
     if (!email || !password) {
       return res.status(400).json({message: "Email and password are required"});
     }
-
-    const { valid, reason, validators } = await emailValidator.validate(email);
-    
-    if (!valid) {
-      return res.status(400).json({ message: "Provide valid email address", reason: validators[reason].reason});
-    }
-
+  
     const candidate = await User.findOne({where: {email}});
     if (candidate) {
       return res.status(409).json({message: "User already exists"});
